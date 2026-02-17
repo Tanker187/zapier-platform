@@ -101,9 +101,23 @@ const callAPI = async (
     const replacementStr = 'raw zip removed in logs';
     const requestBody = JSON.parse(requestOptions.body);
     const cleanedBody = {};
+    const sensitiveKeys = [
+      'password',
+      'pass',
+      'secret',
+      'token',
+      'api_key',
+      'apikey',
+      'access_token',
+      'refresh_token',
+      'deploy_key',
+      'totp_code',
+    ];
     for (const k in requestBody) {
       if (k.includes('zip_file')) {
         cleanedBody[k] = replacementStr;
+      } else if (sensitiveKeys.includes(k.toLowerCase())) {
+        cleanedBody[k] = '<redacted>';
       } else {
         cleanedBody[k] = requestBody[k];
       }
