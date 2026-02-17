@@ -1,3 +1,5 @@
+[![CI](https://github.com/Tanker187/zapier-platform/actions/workflows/ci.yaml/badge.svg)](https://github.com/Tanker187/zapier-platform/actions/workflows/ci.yaml)
+
 # Zapier Platform
 
 [![CI](https://github.com/zapier/zapier-platform/actions/workflows/ci.yaml/badge.svg)](https://github.com/zapier/zapier-platform/actions/workflows/ci.yaml)
