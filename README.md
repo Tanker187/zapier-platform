@@ -1,4 +1,4 @@
-[![CI](https://github.com/Tanker187/zapier-platform/actions/workflows/ci.yaml/badge.svg)](https://github.com/Tanker187/zapier-platform/actions/workflows/ci.yaml)
+[![.github/workflows/ci.yaml](https://github.com/Tanker187/zapier-platform/actions/workflows/ci.yaml/badge.svg?branch=alert-autofix-7)](https://github.com/Tanker187/zapier-platform/actions/workflows/ci.yaml)
 
 # Zapier Platform
 
