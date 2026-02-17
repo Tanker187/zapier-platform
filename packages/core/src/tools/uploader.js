@@ -15,7 +15,7 @@ const uploader = async (
   filename,
   contentType,
 ) => {
-  filename = path.basename(filename).replace('"', '');
+  filename = path.basename(filename).replace(/"/g, '');
 
   const fields = {
     ...signedPostData.fields,
