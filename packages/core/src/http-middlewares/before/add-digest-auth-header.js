@@ -1,10 +1,15 @@
 'use strict';
 
 const fetch = require('node-fetch');
+const crypto = require('crypto');
 
 const { NotImplementedError } = require('../../errors');
-const { md5 } = require('../../tools/hashing');
 const { parseDictHeader } = require('../../tools/http');
+
+// NOTE: MD5 is used here only to implement legacy HTTP Digest Authentication,
+// which specifies MD5 in its original form. Do not reuse this helper for
+// other purposes; prefer stronger algorithms (e.g., SHA-256) elsewhere.
+const md5 = (s) => crypto.createHash('md5').update(s).digest('hex');
 
 const buildDigestHeader = (username, password, url, method, creds) => {
   if (creds.algorithm && creds.algorithm.toUpperCase() !== 'MD5') {
