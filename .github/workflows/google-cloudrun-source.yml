@@ -39,6 +39,9 @@ env:
   REGION: 'us-central1' # TODO: update to your region
   SERVICE: 'my-service' # TODO: update to your service name
 
+permissions:
+  contents: read
+
 jobs:
   deploy:
     runs-on: 'ubuntu-latest'
@@ -48,6 +51,11 @@ jobs:
       id-token: 'write'
 
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@fa2e9d605c4eeb9fcad4c99c224cee0c6c7f3594 # v2.16.0
+        with:
+          egress-policy: audit
+
       - name: 'Checkout'
         uses: 'actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332' # actions/checkout@v4
 
@@ -57,7 +65,7 @@ jobs:
       # including authenticating via a JSON credentials file.
       - id: 'auth'
         name: 'Authenticate to Google Cloud'
-        uses: 'google-github-actions/auth@f112390a2df9932162083945e46d439060d66ec2' # google-github-actions/auth@v2
+        uses: step-security/google-github-auth@57c51210cb4d85d8a5d39dc4c576c79bd693f914 # v3.0.1
         with:
           workload_identity_provider: 'projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider' # TODO: replace with your workload identity provider
 
